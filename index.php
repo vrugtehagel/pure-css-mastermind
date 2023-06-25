@@ -636,7 +636,7 @@
 									<div class="dialog-wrapper win">
 										<div class=dialog>
 											<h2>You cracked it!</h2>
-											<p>5 moves is pretty good!</p>
+											<p>5 moves is pretty darn good!</p>
 											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
