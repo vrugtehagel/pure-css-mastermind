@@ -5,7 +5,9 @@
 
 <title>Mastermind</title>
 
-<link rel=icon href=./favicon.ico>
+<link rel=icon href=./favicon.svg>
+<link rel=mask-icon href=./mask-icon.svg color=#a0522d>
+<link rel=apple-touch-icon href=./touch-icon.png>
 <link rel=stylesheet href=https://fonts.googleapis.com/css2?family=Belanosima&display=swap>
 <link rel=stylesheet href=./styles.css>
 <link rel=stylesheet href=./logic.css>
@@ -53,8 +55,9 @@
 		</div>
 
 		<h1>Mastermind</h1>
-		<!-- What are these unreadable names about? -->
-		<!-- It's for brevity for ids, but it's pretty simple -->
+
+		<!-- Ids are a bit unreadable for uniqueness' sake, -->
+		<!-- but it's quite simple, really -->
 		<!-- p means "peg", the colored thingies -->
 		<!-- h means "hole", it's where the pegs go -->
 		<!-- g means "guess", group of 4 holes -->
