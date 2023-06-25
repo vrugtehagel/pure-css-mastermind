@@ -31,8 +31,8 @@
 	?>
 </style>
 
-<main>
 
+<main>
 	<input id=unknown-theme type=radio name=theme>
 	<input id=light-theme type=radio name=theme>
 	<input id=dark-theme type=radio name=theme checked>
@@ -41,6 +41,13 @@
 
 	<div id=play-field>
 		<div id=background></div>
+
+		<a id=vrugtehagel href="https://vrugtehagel.nl">
+			<svg viewBox="0 0 48 48">
+				<title>vrugtehagel</title>
+				<path d="M2 23C4 20 9 20 10 31S18 36 19 32S23 16 32 11C27 6 20 8 15 26C13 9 -2 12 2 23M27 38C30 22 41 8 46 14S38 21 27 38M26 28C23 21 28 18 30 20S28 23 26 28" fill="currentColor"></path>
+			</svg>
+		</a>
 
 		<input id=about type=checkbox autocomplete=off>
 		<label for=about></label>

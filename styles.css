@@ -30,7 +30,6 @@ body {
 	place-items: center;
 	font: clamp(.7rem, .25rem + 2.25vw, 1rem) / 1.5 Belanosima, sans-serif;
 }
-
 main {
 	width: 28em; height: min(100%, 44.5em); margin: 0 auto;
 	position: relative;
@@ -90,7 +89,11 @@ h1 {
 #how-to-play:not(:checked) + .dialog-wrapper {
 	--show-dialog: 1;
 }
-
+#vrugtehagel {
+	width: 3em; height: 3em; padding: .75em;
+	position: fixed; inset: 0 auto auto 0;
+	color: var(--background);
+}
 #guesses {
 	display: flex; margin: 0 auto; padding: 2em;
 	flex-direction: column;
