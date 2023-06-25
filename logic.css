@@ -1,0 +1,101 @@
+/* Note: code structure (both HTML and CSS) can be much improved with :has() */
+/* Sadly at the time of writing, :has() is not supported in Firefox */
+
+/* Don't show UI for inactive guesses */
+.guess-done:checked + .hole label { display: none; }
+
+/* Don't show submit button if not all pegs have been chosen */
+.hole > .no-peg:checked ~ :is(.hole, .ui) label.submit,
+.hole > .peg-picker-state:checked ~ :is(.hole, .ui) label.submit {
+	opacity: .2;
+	pointer-events: none;
+}
+
+/* Notify the peg renderer whether a peg has been chosen */
+.peg { --peg-chosen: 1; }
+.hole > .no-peg:checked ~ .peg { --peg-chosen: 0; }
+
+/* Don't show scores unless submitted */
+.guess-done:not(:checked) + .guess .score li {
+	scale: .5;
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* Pass the --peg-color to .peg and .peg-X so we can render it */
+.hole > .peg-0:checked ~ .peg, .peg-0, .peg-0 + label { --peg-color: var(--peg-color-0); }
+.hole > .peg-1:checked ~ .peg, .peg-1, .peg-1 + label { --peg-color: var(--peg-color-1); }
+.hole > .peg-2:checked ~ .peg, .peg-2, .peg-2 + label { --peg-color: var(--peg-color-2); }
+.hole > .peg-3:checked ~ .peg, .peg-3, .peg-3 + label { --peg-color: var(--peg-color-3); }
+.hole > .peg-4:checked ~ .peg, .peg-4, .peg-4 + label { --peg-color: var(--peg-color-4); }
+.hole > .peg-5:checked ~ .peg, .peg-5, .peg-5 + label { --peg-color: var(--peg-color-5); }
+
+/* Pass the id of the chosen peg to the sibling .hole/.ui for scoring */
+.hole > .peg-0:checked ~ :is(.hole, .ui) { --peg: 0; }
+.hole > .peg-1:checked ~ :is(.hole, .ui) { --peg: 1; }
+.hole > .peg-2:checked ~ :is(.hole, .ui) { --peg: 2; }
+.hole > .peg-3:checked ~ :is(.hole, .ui) { --peg: 3; }
+.hole > .peg-4:checked ~ :is(.hole, .ui) { --peg: 4; }
+.hole > .peg-5:checked ~ :is(.hole, .ui) { --peg: 5; }
+
+/* Store each chosen peg in a different variable */
+.guess > * > .hole           { --p0: var(--peg); }
+.guess > * > * > .hole       { --p1: var(--peg); }
+.guess > * > * > * > .hole   { --p2: var(--peg); }
+.guess > * > * > * > * > .ui { --p3: var(--peg); }
+
+/* Score each peg. We look from the perspective of the solutin pegs. */
+/* That's to avoid cases where there are guessed pegs of the same color. */
+/* The solution is guaranteed to have different colors only. */
+/* The underscore variables below are 0 if and only if they are true */
+/* The non-underscored variant is then 1 if true, 0 otherwise. */
+.ui {
+	--_0-correct: calc(var(--p0) - var(--s0));
+	--0-correct: clamp(0, 1 - var(--_0-correct) * var(--_0-correct), 1);
+	--_1-correct: calc(var(--p1) - var(--s1));
+	--1-correct: clamp(0, 1 - var(--_1-correct) * var(--_1-correct), 1);
+	--_2-correct: calc(var(--p2) - var(--s2));
+	--2-correct: clamp(0, 1 - var(--_2-correct) * var(--_2-correct), 1);
+	--_3-correct: calc(var(--p3) - var(--s3));
+	--3-correct: clamp(0, 1 - var(--_3-correct) * var(--_3-correct), 1);
+
+	--_0-misplaced: calc((var(--s0) - var(--p1)) * (var(--s0) - var(--p2)) * (var(--s0) - var(--p3)));
+	--0-misplaced: clamp(0, 1 - var(--_0-misplaced) * var(--_0-misplaced), 1);
+	--_1-misplaced: calc((var(--s1) - var(--p0)) * (var(--s1) - var(--p2)) * (var(--s1) - var(--p3)));
+	--1-misplaced: clamp(0, 1 - var(--_1-misplaced) * var(--_1-misplaced), 1);
+	--_2-misplaced: calc((var(--s2) - var(--p0)) * (var(--s2) - var(--p1)) * (var(--s2) - var(--p3)));
+	--2-misplaced: clamp(0, 1 - var(--_2-misplaced) * var(--_2-misplaced), 1);
+	--_3-misplaced: calc((var(--s3) - var(--p0)) * (var(--s3) - var(--p1)) * (var(--s3) - var(--p2)));
+	--3-misplaced: clamp(0, 1 - var(--_3-misplaced) * var(--_3-misplaced), 1);
+}
+
+
+/* Normalize scoring */
+.score-peg-0 { --correct: var(--0-correct); --misplaced: var(--0-misplaced); }
+.score-peg-1 { --correct: var(--1-correct); --misplaced: var(--1-misplaced); }
+.score-peg-2 { --correct: var(--2-correct); --misplaced: var(--2-misplaced); }
+.score-peg-3 { --correct: var(--3-correct); --misplaced: var(--3-misplaced); }
+
+/* Determine if the user won the game (1 for true, 0 for false) */
+.win, .lost {
+	--win: clamp(0, var(--0-correct) + var(--1-correct) + var(--2-correct) + var(--3-correct) - 3, 1);
+	--lost: calc(1 - var(--win));
+}
+
+
+
+
+
+
+
+
+
+/* Show the numbers for the pegs */
+/*.ui {
+	counter-reset: p0 var(--p0) p1 var(--p1) p2 var(--p2) p3 var(--p3);
+}
+.ui::after {
+	content: "p0: " counter(p0) ", p1: " counter(p1) ", p2: " counter(p2) ", p3: " counter(p3);
+}
+*/
+

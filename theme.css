@@ -1,0 +1,58 @@
+input[name=theme]{ display: none; }
+
+label[for=dark-theme]{ --icon-clip-path: path("M21 32A1 1 0 0 0 43 32H37A1 1 0 0 1 27 32A1 1 0 0 1 37 32H43A1 1 0 0 0 21 32M16 35A1 1 0 0 0 16 29H8A1 1 0 0 0 8 35ZM29 16A1 1 0 0 0 35 16V8A1 1 0 0 0 29 8ZM48 29A1 1 0 0 0 48 35H56A1 1 0 0 0 56 29ZM35 48A1 1 0 0 0 29 48V56A1 1 0 0 0 35 56ZM23 45.2A1 1 0 0 0 18.2 41.4L12.8 47A1 1 0 0 0 17.2 51ZM45.4 41.2A1 1 0 0 0 41.2 45.4L47 51.2A1 1 0 0 0 51 46.8ZM41 18.8A1 1 0 0 0 45.6 22.6L51.4 16.8A1 1 0 0 0 46.6 13.2ZM18.6 23A1 1 0 0 0 22.6 18.4L17 12.8A1 1 0 0 0 13 17.2Z"); }
+label[for=light-theme]{ --icon-clip-path: path("M33 17.8A4 4 0 0 0 45 40.2C47 39 49 41.4 47.6 43.2A18 18 0 1 1 31 14C33.8 13.4 35.2 16.4 33 17.8Z"); }
+
+#unknown-theme:checked ~ label[for=light-theme],
+#light-theme:checked ~ label[for=light-theme],
+#dark-theme:checked ~ label[for=dark-theme]{
+	opacity: 0;
+	pointer-events: none;
+}
+
+label[for$=theme]{
+	position: absolute; inset: 0 0 auto auto; scale: .75; z-index: 12;
+	--icon: peru;
+}
+#dark-theme:checked ~ label[for$=theme] {
+	--icon: sandybrown;
+}
+
+@media (prefers-color-scheme: dark){
+	#unknown-theme:checked ~ label[for=dark-theme]{
+		opacity: 0;
+		pointer-events: none;
+	}
+	#unknown-theme:checked ~ label[for=light-theme]{
+		opacity: 1;
+		pointer-events: initial;
+	}
+	#unknown-theme:checked ~ label[for=light-theme]:hover {
+		opacity: .7;
+	}
+	#unknown-theme:checked ~ label[for$=light-theme] {
+		--icon: sandybrown;
+	}
+}
+
+#dark-theme:checked ~ #play-field {
+	--peg-color-0: maroon;
+	--peg-color-1: darkorange;
+	--peg-color-2: mediumseagreen;
+	--peg-color-3: skyblue;
+	--peg-color-4: indigo;
+	--peg-color-5: violet;
+	--base-background: saddlebrown;
+	--background: sienna;
+	--selection: sandybrown;
+	--selection-text: sienna;
+	--title: sandybrown;
+	--white-mark-border: white;
+	--button-background: sienna;
+	--button-text: moccasin;
+	--empty-hole: peru;
+	--peg-picker: saddlebrown;
+	--icon: sandybrown;
+	--dialog: saddlebrown;
+	--dialog-text: moccasin;
+}
