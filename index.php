@@ -8,7 +8,6 @@
 <link rel=icon href=./favicon.svg>
 <link rel=mask-icon href=./mask-icon.svg color=#a0522d>
 <link rel=apple-touch-icon href=./touch-icon.png>
-<link rel=stylesheet href=https://fonts.googleapis.com/css2?family=Belanosima&display=swap>
 <link rel=stylesheet href=./styles.css>
 <link rel=stylesheet href=./logic.css>
 <link rel=stylesheet href=./theme.css>
