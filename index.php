@@ -54,7 +54,7 @@
 		<label for=about class=icon></label>
 		<div id=about-dialog class=dialog>
 			<h2>About</h2>
-			<p>This version of Mastermind only uses HTML and CSS, no JavaScript! Basically, I just wanted to show off what styling can do.</p>
+			<p>This version of Mastermind uses no JavaScript! Basically, I just wanted to show off what styling can do.</p>
 			<p>It uses inputs, labels, :checked and --variables for its logic. A few lines of PHP create a unique solution (in CSS) on page load.</p>
 			<p>Enjoy!</p>
 		</div>
@@ -73,7 +73,7 @@
 			<h2>How to play</h2>
 
 			<p>Guess the code!</p>
-			<p>Each guess is scored with a <span class=black-mark></span> for each color you got exactly right, and a <span class=white-mark></span> for every correct, but misplaced, color.</p>
+			<p>Guesses are scored with a <span class=black-mark></span> for each color you got exactly right, and a <span class=white-mark></span> for every correct, but misplaced, color. Only, the hints are not ordered, so you don't know which color they belong to!</p>
 			<label for=how-to-play class=button>Continue</label>
 		</div>
 
