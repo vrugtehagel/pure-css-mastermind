@@ -318,14 +318,6 @@ section > .hole {
 .dialog .button:hover {
 	opacity: .7;
 }
-.button[href*=dark]{ display: none; }
-#dark-theme:checked ~ #play-field .button[href*=light]{ display: none; }
-#dark-theme:checked ~ #play-field .button[href*=dark]{ display: inline-block; }
-@media (prefers-color-scheme: dark){
-	#unknown-theme:checked ~ #play-field .button[href*=light]{ display: none; }
-	#unknown-theme:checked ~ #play-field .button[href*=dark]{ display: inline-block; }
-}
-
 .dialog .solution {
 	display: grid; margin: 1em -1em -1em;
 	grid-template: 4em / repeat(6, 4em); place-items: center;

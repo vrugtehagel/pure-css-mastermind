@@ -33,15 +33,9 @@
 
 
 <main>
-	<?php
-		$theme = $_GET["theme"] ?? "";
-		$theme_dark = $theme == "dark" ? "checked" : "";
-		$theme_light = $theme == "light" ? "checked" : "";
-		$theme_unknown = (!$theme_dark && !$theme_light) ? "checked" : "";
-	?>
-	<input id=unknown-theme type=radio name=theme <?= $theme_unknown ?>>
-	<input id=light-theme type=radio name=theme <?= $theme_light ?>>
-	<input id=dark-theme type=radio name=theme <?= $theme_dark ?>>
+	<input id=unknown-theme type=radio name=theme>
+	<input id=light-theme type=radio name=theme>
+	<input id=dark-theme type=radio name=theme checked>
 	<label class=icon for=light-theme></label>
 	<label class=icon for=dark-theme></label>
 
@@ -60,7 +54,7 @@
 		<label for=about class=icon></label>
 		<div id=about-dialog class=dialog>
 			<h2>About</h2>
-			<p>This version of Mastermind uses no JavaScript! Basically, I just wanted to show off what styling can do.</p>
+			<p>This version of Mastermind only uses HTML and CSS, no JavaScript! Basically, I just wanted to show off what styling can do.</p>
 			<p>It uses inputs, labels, :checked and --variables for its logic. A few lines of PHP create a unique solution (in CSS) on page load.</p>
 			<p>Enjoy!</p>
 		</div>
@@ -182,8 +176,7 @@
 											<h2>Holy mackerel!</h2>
 											<p>You beat the game in ONE move!</p>
 											<p>You aren't cheating, are you?</p>
-											<a href=./?theme=dark class=button>Play again</a>
-											<a href=./?theme=light class=button>Play again</a>
+											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -297,8 +290,7 @@
 											<h2>Incredible!</h2>
 											<p>You won in only two moves!</p>
 											<p>Now that's a mastermind at work!</p>
-											<a href=./?theme=dark class=button>Play again</a>
-											<a href=./?theme=light class=button>Play again</a>
+											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -412,8 +404,7 @@
 										<div class="dialog win">
 											<h2>Well done!</h2>
 											<p>And only 3 moves! Very nice!</p>
-											<a href=./?theme=dark class=button>Play again</a>
-											<a href=./?theme=light class=button>Play again</a>
+											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -526,8 +517,7 @@
 											<h2>You win!</h2>
 											<p>4 moves, extraordinary!</p>
 											<p>Well played!</p>
-											<a href=./?theme=dark class=button>Play again</a>
-											<a href=./?theme=light class=button>Play again</a>
+											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -640,8 +630,7 @@
 										<div class="dialog win">
 											<h2>You cracked it!</h2>
 											<p>5 moves is pretty darn good!</p>
-											<a href=./?theme=dark class=button>Play again</a>
-											<a href=./?theme=light class=button>Play again</a>
+											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -755,8 +744,7 @@
 											<h2>Not bad!</h2>
 											<p>You solved it in 6 moves!</p>
 											<p>Not too shabby, not at all!</p>
-											<a href=./?theme=dark class=button>Play again</a>
-											<a href=./?theme=light class=button>Play again</a>
+											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -870,8 +858,7 @@
 											<h2>Congrats!</h2>
 											<p>You beat the game in 7 moves!</p>
 											<p>Hats off to you!</p>
-											<a href=./?theme=dark class=button>Play again</a>
-											<a href=./?theme=light class=button>Play again</a>
+											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -984,8 +971,7 @@
 											<h2>Clutch!</h2>
 											<p>That was close!</p>
 											<p>You got it on your last guess!</p>
-											<a href=./?theme=dark class=button>Play again</a>
-											<a href=./?theme=light class=button>Play again</a>
+											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -1000,8 +986,7 @@
 											<h2>Game over!</h2>
 											<p>You couldn't crack it.</p>
 											<p>That's okay!</p>
-											<a href=./?theme=dark class=button>Try again</a>
-											<a href=./?theme=light class=button>Try again</a>
+											<a href=./ class=button>Try again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
