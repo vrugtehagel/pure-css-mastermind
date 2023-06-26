@@ -34,7 +34,7 @@ label[for=dark-theme]{ scale: .6; }
 	#unknown-theme:checked ~ label[for$=light-theme] {
 		--icon: sandybrown;
 	}
-	#unknown-theme:checked ~ form {
+	#unknown-theme:checked ~ #play-field {
 		--peg-color-0: maroon;
 		--peg-color-1: darkorange;
 		--peg-color-2: mediumseagreen;
@@ -57,7 +57,7 @@ label[for=dark-theme]{ scale: .6; }
 	}
 }
 /* Same as above */
-#dark-theme:checked ~ form {
+#dark-theme:checked ~ #play-field {
 	--peg-color-0: maroon;
 	--peg-color-1: darkorange;
 	--peg-color-2: mediumseagreen;

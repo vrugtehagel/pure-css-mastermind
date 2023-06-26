@@ -38,10 +38,7 @@
 	<label class=icon for=light-theme></label>
 	<label class=icon for=dark-theme></label>
 
-	<input id=how-to-play type=checkbox autocomplete=off>
-
-	<form>
-		<input id=reset type=reset>
+	<div id=play-field>
 		<div id=background></div>
 
 		<a id=vrugtehagel href="https://vrugtehagel.nl">
@@ -69,6 +66,7 @@
 		<!-- h means "hole", it's where the pegs go -->
 		<!-- g means "guess", group of 4 holes -->
 		<!-- the numbers are just indexes -->
+		<input id=how-to-play type=checkbox autocomplete=off>
 		<label for=how-to-play></label>
 		<div id=how-to-play-dialog class=dialog>
 			<h2>How to play</h2>
@@ -177,7 +175,7 @@
 											<h2>Holy mackerel!</h2>
 											<p>You beat the game in ONE move!</p>
 											<p>You aren't cheating, are you?</p>
-											<label for=reset class=button>Play again</label>
+											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -291,7 +289,7 @@
 											<h2>Incredible!</h2>
 											<p>You won in only two moves!</p>
 											<p>Now that's a mastermind at work!</p>
-											<label for=reset class=button>Play again</label>
+											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -405,7 +403,7 @@
 										<div class="dialog win">
 											<h2>Well done!</h2>
 											<p>And only 3 moves! Very nice!</p>
-											<label for=reset class=button>Play again</label>
+											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -518,7 +516,7 @@
 											<h2>You win!</h2>
 											<p>4 moves, extraordinary!</p>
 											<p>Well played!</p>
-											<label for=reset class=button>Play again</label>
+											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -631,7 +629,7 @@
 										<div class="dialog win">
 											<h2>You cracked it!</h2>
 											<p>5 moves is pretty darn good!</p>
-											<label for=reset class=button>Play again</label>
+											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -745,7 +743,7 @@
 											<h2>Not bad!</h2>
 											<p>You solved it in 6 moves!</p>
 											<p>Not too shabby, not at all!</p>
-											<label for=reset class=button>Play again</label>
+											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -859,7 +857,7 @@
 											<h2>Congrats!</h2>
 											<p>You beat the game in 7 moves!</p>
 											<p>Hats off to you!</p>
-											<label for=reset class=button>Play again</label>
+											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -972,7 +970,7 @@
 											<h2>Clutch!</h2>
 											<p>That was close!</p>
 											<p>You got it on your last guess!</p>
-											<label for=reset class=button>Play again</label>
+											<a href=./ class=button>Play again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -987,7 +985,7 @@
 											<h2>Game over!</h2>
 											<p>You couldn't crack it.</p>
 											<p>That's okay!</p>
-											<label for=reset class=button>Try again</label>
+											<a href=./ class=button>Try again</a>
 											<div class=solution>
 												<div class=fake-score></div>
 												<div class=fake-peg style="--peg-color:var(--peg-color-<?= $solution[0] ?>)"></div>
@@ -1004,5 +1002,5 @@
 				</section>
 			</div>
 		</div>
-	</form>
+	</div>
 </main>

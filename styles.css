@@ -3,7 +3,7 @@
 	src: url("./belanosima.woff2") format("woff2");
 }
 
-form {
+#play-field {
 	--peg-color-0: red;
 	--peg-color-1: orange;
 	--peg-color-2: mediumaquamarine;
@@ -41,14 +41,13 @@ main {
 	overflow: hidden;
 	position: relative;
 }
-form {
+#play-field {
 	display: flex; width: 100%; height: 100%;
 	flex-direction: column;
 	position: relative;
 	border-radius: 2em 2em 3em 3em;
 	background-color: var(--background);
 }
-#reset { display: none; }
 #background {
 	position: fixed; inset: 0; z-index: -1;
 	background-color: var(--base-background);
@@ -86,15 +85,15 @@ h1 {
 	background-color: black;
 }
 #how-to-play { display: none; }
-#how-to-play:not(:checked) ~ form label[for=how-to-play]:not(.button) {
+#how-to-play:not(:checked) + label {
 	display: block;
 	position: fixed; inset: 0; z-index: 9;
 	cursor: initial;
 }
-#how-to-play-dialog .button {
+#how-to-play ~ #how-to-play-dialog .button {
 	z-index: 10;
 }
-#how-to-play:not(:checked) ~ form #how-to-play-dialog {
+#how-to-play:not(:checked) ~ #how-to-play-dialog {
 	--show-dialog: 1;
 }
 #vrugtehagel {
@@ -261,8 +260,8 @@ section > .hole {
 }
 
 .guess-done,
-.guess-done:checked + .guess label:not(.button),
-.guess-done:not(:checked) ~ .guess-done:not(:checked) + .guess label:not(.button) { display: none; }
+.guess-done:checked + .guess label,
+.guess-done:not(:checked) ~ .guess-done:not(:checked) + .guess label { display: none; }
 .guess-done:not(:checked) ~ .guess-done:not(:checked) + .guess {
 	height: 0;
 	overflow: hidden;
