@@ -14,6 +14,7 @@ label[for$=theme]{
 	position: absolute; inset: 0 0 auto auto; scale: .75; z-index: 12;
 	--icon: peru;
 }
+label[for=dark-theme]{ scale: .6; }
 #dark-theme:checked ~ label[for$=theme] {
 	--icon: sandybrown;
 }
@@ -33,8 +34,29 @@ label[for$=theme]{
 	#unknown-theme:checked ~ label[for$=light-theme] {
 		--icon: sandybrown;
 	}
+	#unknown-theme:checked ~ #play-field {
+		--peg-color-0: maroon;
+		--peg-color-1: darkorange;
+		--peg-color-2: mediumseagreen;
+		--peg-color-3: skyblue;
+		--peg-color-4: indigo;
+		--peg-color-5: violet;
+		--base-background: saddlebrown;
+		--background: sienna;
+		--selection: sandybrown;
+		--selection-text: sienna;
+		--title: sandybrown;
+		--white-mark-border: white;
+		--button-background: sienna;
+		--button-text: moccasin;
+		--empty-hole: peru;
+		--peg-picker: saddlebrown;
+		--icon: sandybrown;
+		--dialog: saddlebrown;
+		--dialog-text: moccasin;
+	}
 }
-
+/* Same as above */
 #dark-theme:checked ~ #play-field {
 	--peg-color-0: maroon;
 	--peg-color-1: darkorange;

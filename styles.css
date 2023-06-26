@@ -1,3 +1,8 @@
+@font-face {
+	font-family: Belanosima;
+	src: url("./belanosima.woff2") format("woff2");
+}
+
 #play-field {
 	--peg-color-0: red;
 	--peg-color-1: orange;
@@ -26,19 +31,21 @@
 	color: var(--selection-text); background-color: var(--selection);
 }
 body {
-	display: grid; min-height: 100vh; padding: 1em; margin: 0; box-sizing: border-box;
+	display: grid; min-height: 100vh; min-height: 100svh;
+	padding: 1em; margin: 0; box-sizing: border-box;
 	place-items: center;
 	font: clamp(.7rem, .25rem + 2.25vw, 1rem) / 1.5 Belanosima, sans-serif;
 }
 main {
-	width: 28em; height: min(100%, 44.5em); margin: 0 auto;
+	width: 28em; height: min(100%, 43.5em); margin: 0 auto;
+	overflow: hidden;
 	position: relative;
 }
 #play-field {
-	display: grid; width: 100%; height: 100%;
-	grid-template: auto auto / auto;
+	display: flex; width: 100%; height: 100%;
+	flex-direction: column;
 	position: relative;
-	border-radius: 2em;
+	border-radius: 2em 2em 3em 3em;
 	background-color: var(--background);
 }
 #background {
@@ -47,11 +54,11 @@ main {
 }
 #about { display: none; }
 #about ~ .icon[for=about] {
-	position: absolute; inset: 0 auto auto 0; scale: .75;
+	position: absolute; inset: 0 auto auto 0; scale: .6; z-index: 8;
 	--icon-clip-path: path("M24 45Q21 45 21 42Q21 38 17.4 34.6A19 19 0 1 1 46.6 34.6Q43 38 43 42Q43 45 40 45H32V39H37.4Q37.4 35.8 41.4 31.2A13 13 0 1 0 22.4 31.2Q26.6 35.8 26.6 39H32V45A1 1 0 0 0 32 45ZM26 47A1 1 0 0 0 26 53H38A1 1 0 0 0 38 47ZM28 55A1 1 0 0 0 28 61H36A1 1 0 0 0 36 55ZM27.6 19.4Q28.2 18.2 29.4 17.6A1 1 0 0 0 26.6 12.4Q23.8 13.8 22.2 16.8A1 1 0 0 0 27.6 19.4Z");
 }
 #about + label {
-	position: fixed; inset: 0; z-index: 11;
+	position: fixed; inset: 0; z-index: 7;
 }
 #about:not(:checked) + label {
 	right: 100%;
@@ -78,15 +85,15 @@ h1 {
 	background-color: black;
 }
 #how-to-play { display: none; }
-#how-to-play:not(:checked) + .dialog-wrapper label:first-of-type {
+#how-to-play:not(:checked) + label {
 	display: block;
-	position: fixed; inset: 0;
+	position: fixed; inset: 0; z-index: 9;
 	cursor: initial;
 }
-#how-to-play + .dialog-wrapper .button {
+#how-to-play ~ #how-to-play-dialog .button {
 	z-index: 10;
 }
-#how-to-play:not(:checked) + .dialog-wrapper {
+#how-to-play:not(:checked) ~ #how-to-play-dialog {
 	--show-dialog: 1;
 }
 #vrugtehagel {
@@ -95,9 +102,15 @@ h1 {
 	color: var(--background);
 }
 #guesses {
-	display: flex; margin: 0 auto; padding: 2em;
+	flex: 1 0 0;
+	width: 100%; margin-top: auto;
+	overflow: auto;
+}
+#guesses-scroll-container {
+	display: flex; min-height: 100%; margin: 0 auto; padding: 2em; box-sizing: border-box;
 	flex-direction: column;
 	justify-content: end;
+	overflow: hidden;
 }
 
 label { cursor: pointer; }
@@ -262,31 +275,36 @@ section > .hole {
 	to { height: 4em; clip-path: inset(0px); }
 }
 
-.dialog-wrapper {
-	--show-dialog: 0;
-	display: grid; width: 100vw; height: 100vh;
-	grid-template: auto / auto; place-items: center;
-	position: fixed; inset: 0 0 auto auto; z-index: 10;
-	transition: right 0s calc(.3s - .3s * var(--show-dialog)), opacity .3s;
-	right: calc(100% - 100% * var(--show-dialog, 0));
-	opacity: var(--show-dialog, 0);
+.dialog-backdrop {
+	--show-backdrop: 0;
+	width: 100vw; height: 100vh;
+	position: fixed; inset: 0 0 0 auto; z-index: 9;
+	right: calc(100vw - 100vw * var(--show-backdrop, 0));
 }
 .dialog {
-	display: flex; width: 26em; height: min(35em, 100vh - 10em);
-	padding: 2em; margin-top: 7.5em; box-sizing: border-box;
+	--show-dialog: 0;
+	display: flex; width: 26em; height: min(34.5em, 100vh - 11em); height: min(34.5em, 100svh - 11em);
+	padding: 2em; margin-top: 7em; box-sizing: border-box;
 	flex-direction: column;
+	position: fixed; inset: 50% 50% auto auto; z-index: 10;
+	right: calc(150% - 100% * var(--show-dialog, 0)); translate: 50% calc(-50% - 3.5em);
 	color: var(--dialog-text); background-color: var(--dialog);
+	opacity: var(--show-dialog, 0);
 	border-radius: 2em;
 	text-align: center;
-	overflow: auto;
+	overflow-x: hidden; overflow-y: auto;
+	transition: right 0s calc(.3s - .3s * var(--show-dialog)), opacity .3s;
 }
 .dialog h2 {
-	margin: 0 auto 1em;
+	margin: 0 auto .5em;
 	font-size: 2.25em;
 }
 .dialog p {
 	margin: .5em 0;
 	font-size: 1.5em;
+}
+.dialog p:last-of-type {
+	margin-bottom: 1.5em;
 }
 .dialog .button {
 	display: inline-block; padding: .75em 1.5em; margin: auto 0 1em;
@@ -300,6 +318,14 @@ section > .hole {
 .dialog .button:hover {
 	opacity: .7;
 }
+.button[href*=dark]{ display: none; }
+#dark-theme:checked ~ #play-field .button[href*=light]{ display: none; }
+#dark-theme:checked ~ #play-field .button[href*=dark]{ display: inline-block; }
+@media (prefers-color-scheme: dark){
+	#unknown-theme:checked ~ #play-field .button[href*=light]{ display: none; }
+	#unknown-theme:checked ~ #play-field .button[href*=dark]{ display: inline-block; }
+}
+
 .dialog .solution {
 	display: grid; margin: 1em -1em -1em;
 	grid-template: 4em / repeat(6, 4em); place-items: center;
@@ -317,12 +343,18 @@ section > .hole {
 	border-radius: 50%;
 }
 
-.dialog-wrapper.win {
+.dialog-backdrop.win {
+	--show-backdrop: var(--win);
+}
+.dialog.win {
 	--show-dialog: var(--win);
 	transition-delay: 0s, .3s;
 }
-.dialog-wrapper.lost {
-	--show-dialog: calc(1 - var(--win));
+.dialog-backdrop.lost {
+	--show-backdrop: var(--lost);
+}
+.dialog.lost {
+	--show-dialog: var(--lost);
 	transition-delay: 0s, .3s;
 }
 .guess-done:not(:checked) + .guess .win { --win: 0; }

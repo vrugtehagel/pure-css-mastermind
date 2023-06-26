@@ -77,7 +77,7 @@
 .score-peg-3 { --correct: var(--3-correct); --misplaced: var(--3-misplaced); }
 
 /* Determine if the user won the game (1 for true, 0 for false) */
-.win, .lost {
+.win, .lost, .dialog-backdrop {
 	--win: clamp(0, var(--0-correct) + var(--1-correct) + var(--2-correct) + var(--3-correct) - 3, 1);
 	--lost: calc(1 - var(--win));
 }
