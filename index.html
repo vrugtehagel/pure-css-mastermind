@@ -11,25 +11,7 @@
 <link rel=stylesheet href=./styles.css>
 <link rel=stylesheet href=./logic.css>
 <link rel=stylesheet href=./theme.css>
-
-<style>
-	<?php
-		$pegs = 6;
-		$holes = 4;
-		$options = range(0, $pegs - 1);
-		$solution = [];
-		while($holes--){
-			$index = random_int(0, count($options) - 1);
-			[$color] = array_splice($options, $index, 1);
-			array_push($solution, $color);
-		}
-
-		echo ":root {";
-		foreach($solution as $index => $color) echo "--s$index: $color;";
-		echo "}";
-	?>
-</style>
-
+<link rel=stylesheet href=./solution.css.php>
 
 <main>
 	<input id=unknown-theme type=radio name=theme>
