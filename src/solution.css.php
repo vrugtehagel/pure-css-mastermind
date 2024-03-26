@@ -1,5 +1,6 @@
 <?php
 header("Content-type: text/css; charset: UTF-8");
+header("Cache-Control: no-cache, must-revalidate");
 
 // Okay, this might look like I'm cheating, but I promise I'm not!
 // Basically, CSS is not capable of generating any form of "random" numbers.
